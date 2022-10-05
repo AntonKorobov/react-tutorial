@@ -1,10 +1,14 @@
 import React from 'react';
 
-function TodoItem() {
+function TodoItem(props) {
+  const style = {
+    backgroundColor: props.completed ? 'green' : 'white',
+  };
+
   return (
-    <div className='todo-item'>
-      <input type='checkbox' />
-      <p>Placeholder text</p>
+    <div style={style} className='todo-item'>
+      <input type='checkbox' checked={props.completed} onChange={() => console.log('tap')} />
+      <p>{props.text}</p>
     </div>
   );
 }
