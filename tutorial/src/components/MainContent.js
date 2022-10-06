@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './MainContent.css';
 import TodoItem from './TodoItem';
 import PushButton from './PushButton';
+import Timer from './Timer';
 
 const todoList = [
   { id: 1, text: '1111', completed: true },
@@ -52,6 +53,7 @@ class MainContent extends Component {
         <div className='todo-list'>{todoItemsComponents}</div>
         <h1>Logged {this.state.isLoggedIn ? 'In' : 'Out'}</h1>
         <PushButton counter={this.state.counter} handleClick={this.handleClick} />
+        <Timer />
       </main>
     );
   }
