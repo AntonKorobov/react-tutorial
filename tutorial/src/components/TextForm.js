@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 
 export default class TextForm extends Component {
-  constructor() {
-    super();
-    this.state = {
-      first: 'default',
-    };
-  }
+  state = {
+    first: 'default',
+  };
 
   handleChange = (event) => {
     const { name, value } = event.target;

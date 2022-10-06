@@ -13,14 +13,11 @@ const todoList = [
 ];
 
 class MainContent extends Component {
-  constructor() {
-    super();
-    this.state = {
-      isLoggedIn: true,
-      todoList,
-      counter: 0,
-    };
-  }
+  state = {
+    isLoggedIn: true,
+    todoList,
+    counter: 0,
+  };
 
   handleClick = () => {
     this.setState((prevState) => {
