@@ -18,6 +18,7 @@ class MainContent extends Component {
       counter: 0,
     };
     this.handleClick = this.handleClick.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   handleClick() {
@@ -28,8 +29,23 @@ class MainContent extends Component {
     });
   }
 
+  handleChange(id) {
+    this.setState((prevState) => {
+      const modifiedTodoList = prevState.todoList.map((elem) => {
+        if (elem.id === id) {
+          elem.completed = !elem.completed;
+        }
+        return elem;
+      });
+      console.log('changed!', id);
+      return {
+        todoList: modifiedTodoList,
+      };
+    });
+  }
+
   render() {
-    const todoItemsComponents = this.state.todoList.map((elem) => <TodoItem key={elem.id} text={elem.text} completed={elem.completed} />);
+    const todoItemsComponents = this.state.todoList.map((item) => <TodoItem key={item.id} item={item} handleChange={this.handleChange} />);
 
     return (
       <main className='main'>
