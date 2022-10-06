@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './MainContent.css';
 import TodoItem from './TodoItem';
+import PushButton from './PushButton';
 
 const todoList = [
   { id: 1, text: '1111', completed: true },
@@ -37,7 +38,6 @@ class MainContent extends Component {
         }
         return elem;
       });
-      console.log('changed!', id);
       return {
         todoList: modifiedTodoList,
       };
@@ -51,8 +51,7 @@ class MainContent extends Component {
       <main className='main'>
         <div className='todo-list'>{todoItemsComponents}</div>
         <h1>Logged {this.state.isLoggedIn ? 'In' : 'Out'}</h1>
-        <p>{this.state.counter}</p>
-        <button onClick={this.handleClick}>Push Me!</button>
+        <PushButton counter={this.state.counter} handleClick={this.handleClick} />
       </main>
     );
   }
