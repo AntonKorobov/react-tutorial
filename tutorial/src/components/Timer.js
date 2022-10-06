@@ -8,17 +8,24 @@ export default class Timer extends Component {
     };
   }
   componentDidMount() {
-    setInterval(() => {
-      this.setState((prevState) => {
-        return { timer: prevState.timer + 1 };
+    fetch('http://worldtimeapi.org/api/ip')
+      .then((response) => response.json())
+      .then((data) => {
+        const currentDate = new Date(data.datetime);
+        this.setState({ timer: currentDate.getHours() * 60 * 60 + currentDate.getMinutes() * 60 + currentDate.getSeconds() });
+
+        setInterval(() => {
+          this.setState((prevState) => {
+            return { timer: prevState.timer + 1 };
+          });
+        }, 1000);
       });
-    }, 1000);
   }
 
   render() {
     return (
       <div>
-        <h2>Past :{this.state.timer} sec.</h2>
+        Current time: {Math.floor(this.state.timer / (60 * 60))} : {Math.floor((this.state.timer / 60) % 60)} : {Math.floor(this.state.timer % 60)}
       </div>
     );
   }

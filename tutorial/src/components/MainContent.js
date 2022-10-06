@@ -3,6 +3,7 @@ import './MainContent.css';
 import TodoItem from './TodoItem';
 import PushButton from './PushButton';
 import Timer from './Timer';
+import TextForm from './TextForm';
 
 const todoList = [
   { id: 1, text: '1111', completed: true },
@@ -19,19 +20,17 @@ class MainContent extends Component {
       todoList,
       counter: 0,
     };
-    this.handleClick = this.handleClick.bind(this);
-    this.handleChange = this.handleChange.bind(this);
   }
 
-  handleClick() {
+  handleClick = () => {
     this.setState((prevState) => {
       return {
         counter: prevState.counter + 1,
       };
     });
-  }
+  };
 
-  handleChange(id) {
+  handleChange = (id) => {
     this.setState((prevState) => {
       const modifiedTodoList = prevState.todoList.map((elem) => {
         if (elem.id === id) {
@@ -43,7 +42,7 @@ class MainContent extends Component {
         todoList: modifiedTodoList,
       };
     });
-  }
+  };
 
   render() {
     const todoItemsComponents = this.state.todoList.map((item) => <TodoItem key={item.id} item={item} handleChange={this.handleChange} />);
@@ -54,6 +53,7 @@ class MainContent extends Component {
         <h1>Logged {this.state.isLoggedIn ? 'In' : 'Out'}</h1>
         <PushButton counter={this.state.counter} handleClick={this.handleClick} />
         <Timer />
+        <TextForm />
       </main>
     );
   }
